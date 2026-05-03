@@ -72,3 +72,17 @@ Any decision that changes the stack, the v0 scope, or the schema rules above MUS
 - 2026-05-03 — Deferred AI moderation provider integration to post-v0. Schema fields kept so retrofit is non-destructive.
 - 2026-05-03 — Picked Supabase Auth over rolling our own with `jose` + `bcryptjs`. Email/password and GitHub OAuth both enabled; GitHub OAuth chosen because the audience is vibe coders who already have GitHub accounts.
 - 2026-05-03 — Cleaned up dead deps from pre-Supabase / pre-Postgres plans: removed `jose`, `bcryptjs`, `better-sqlite3` and their `@types/*`. `drizzle-orm` and `drizzle-kit` stay; the Postgres driver and Supabase SDKs (`@supabase/supabase-js`, `@supabase/ssr`) get added on the feature branch that needs them.
+
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues on `CaptainTimmeow/ai-bounty-board`, accessed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical labels with default names: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` and `docs/adr/` at the repo root (created lazily by `/grill-with-docs` when terms or decisions get resolved). See `docs/agents/domain.md`.
