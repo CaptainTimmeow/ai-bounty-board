@@ -1,51 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-base: #0f0d0a;
+  --color-surface: #1a1714;
+  --color-raised: #252118;
+  --color-input: #1e1b16;
+  --color-border: #2e2a24;
+  --color-edge: #3d3730;
+  --color-gold: #c8a55a;
+  --color-gold-muted: #8a7a4a;
+  --color-cream: #e8dcc8;
+  --color-sand: #9a8e7a;
+  --color-dust: #6a6050;
+  --color-success: #4a8c5c;
+  --color-warning: #c8a040;
+  --color-danger: #c85a4a;
+  --color-info: #4a7cac;
+  --color-surface-green: #1a2e1e;
+  --color-surface-amber: #2e2a1a;
+  --color-surface-blue: #1a2430;
+  --color-surface-red: #2e1a1a;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-base);
+  color: var(--color-cream);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
+input[type="text"],
+input[type="url"],
+input[type="date"],
+textarea,
+select {
+  border: 1px solid var(--color-edge);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
   font: inherit;
-  background: #ffffff;
+  font-size: 0.9rem;
+  background: var(--color-input);
+  color: var(--color-cream);
+  transition: border-color 0.15s;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="text"]:focus {
-  outline: 2px solid #2563eb;
-  outline-offset: 1px;
-  border-color: #2563eb;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-gold) 20%, transparent);
 }
 
-button[type="submit"] {
-  border: 1px solid #111827;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-dust);
+}
+
+button[type="submit"],
+.btn-primary {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
   font: inherit;
-  background: #111827;
-  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--color-gold);
+  color: var(--color-base);
   cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
 }
 
-button[type="submit"]:hover {
-  background: #1f2937;
+button[type="submit"]:hover,
+.btn-primary:hover {
+  background: #d4b060;
+  transform: translateY(-1px);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dust);
 }
