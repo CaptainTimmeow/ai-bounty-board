@@ -13,12 +13,31 @@ export interface Bounty {
   daysLeft: number;
   rangersCount: number;
   discussionCount: number;
-  postedBy: { name: string; avatar: string };
+  postedBy: { id: string; name: string; avatar: string };
   icon: string;
   tags: string[];
   challenge?: string;
   requiredFeatures?: string[];
   acceptanceCriteria?: string[];
+}
+
+export interface PublicProfile {
+  id: string;
+  displayName: string;
+  avatarUrl: string;
+  bio: string;
+  links: { label: string; url: string }[];
+  joinedAt: string;
+}
+
+export interface PublicDemo {
+  id: string;
+  bountyId: string;
+  rangerId: string;
+  title: string;
+  submittedAt: string;
+  isWinning: boolean;
+  sheriffStars: number;
 }
 
 export interface Submission {
@@ -56,7 +75,7 @@ export const bounties: Bounty[] = [
     daysLeft: 3,
     rangersCount: 5,
     discussionCount: 12,
-    postedBy: { name: "Sheriff Bot", avatar: "🤖" },
+    postedBy: { id: "sheriff-bot", name: "Sheriff Bot", avatar: "🤖" },
     icon: "🌤️",
     tags: ["weather", "pixel-art", "api", "frontend", "mood"],
     challenge: "Build a small web app that fetches current weather for a user's location and returns a mood or vibe represented with pixel art and a short message.",
@@ -88,7 +107,7 @@ export const bounties: Bounty[] = [
     daysLeft: 5,
     rangersCount: 6,
     discussionCount: 8,
-    postedBy: { name: "CozyDev", avatar: "🏕️" },
+    postedBy: { id: "cozydev", name: "CozyDev", avatar: "🏕️" },
     icon: "🔥",
     tags: ["habits", "streaks", "productivity"],
   },
@@ -103,7 +122,7 @@ export const bounties: Bounty[] = [
     daysLeft: 2,
     rangersCount: 7,
     discussionCount: 15,
-    postedBy: { name: "PixelKnight", avatar: "⚔️" },
+    postedBy: { id: "pixelknight", name: "PixelKnight", avatar: "⚔️" },
     icon: "🎒",
     tags: ["game", "ui", "inventory", "roguelike"],
   },
@@ -118,7 +137,7 @@ export const bounties: Bounty[] = [
     daysLeft: 6,
     rangersCount: 4,
     discussionCount: 5,
-    postedBy: { name: "StudyMaster", avatar: "📚" },
+    postedBy: { id: "studymaster", name: "StudyMaster", avatar: "📚" },
     icon: "🎓",
     tags: ["ai", "education", "dashboard"],
   },
@@ -133,7 +152,7 @@ export const bounties: Bounty[] = [
     daysLeft: 1,
     rangersCount: 8,
     discussionCount: 20,
-    postedBy: { name: "NoodleFan", avatar: "🍜" },
+    postedBy: { id: "noodlefan", name: "NoodleFan", avatar: "🍜" },
     icon: "🗺️",
     tags: ["map", "food", "local"],
   },
@@ -148,9 +167,78 @@ export const bounties: Bounty[] = [
     daysLeft: 4,
     rangersCount: 6,
     discussionCount: 9,
-    postedBy: { name: "BeatDrop", avatar: "🎵" },
+    postedBy: { id: "beatdrop", name: "BeatDrop", avatar: "🎵" },
     icon: "🎧",
     tags: ["music", "creative", "mood"],
+  },
+];
+
+export const publicProfiles: PublicProfile[] = [
+  {
+    id: "desertranger",
+    displayName: "DesertRanger",
+    avatarUrl: "🤠",
+    bio: "Building useful tools, one prompt at a time. Love community, code, and a good challenge.",
+    links: [
+      { label: "GitHub", url: "https://github.com/desertranger" },
+      { label: "Portfolio", url: "https://example.com/desertranger" },
+    ],
+    joinedAt: "May 12, 2024",
+  },
+  {
+    id: "sheriff-bot",
+    displayName: "Sheriff Bot",
+    avatarUrl: "🤖",
+    bio: "Posting practice prompts and keeping the board tidy.",
+    links: [{ label: "Docs", url: "https://github.com/CaptainTimmeow/ai-bounty-board" }],
+    joinedAt: "May 3, 2026",
+  },
+  {
+    id: "newcomer",
+    displayName: "Newcomer",
+    avatarUrl: "🌵",
+    bio: "Just arrived in town.",
+    links: [],
+    joinedAt: "May 12, 2026",
+  },
+];
+
+export const publicDemos: PublicDemo[] = [
+  {
+    id: "demo-weather",
+    bountyId: "1",
+    rangerId: "desertranger",
+    title: "Pixel Weather Mood App",
+    submittedAt: "May 18, 2025",
+    isWinning: false,
+    sheriffStars: 0,
+  },
+  {
+    id: "demo-ramen",
+    bountyId: "5",
+    rangerId: "desertranger",
+    title: "Ramen Finder Map",
+    submittedAt: "May 15, 2025",
+    isWinning: true,
+    sheriffStars: 1,
+  },
+  {
+    id: "demo-inventory",
+    bountyId: "3",
+    rangerId: "desertranger",
+    title: "Roguelike Inventory UI",
+    submittedAt: "May 12, 2025",
+    isWinning: false,
+    sheriffStars: 0,
+  },
+  {
+    id: "demo-study",
+    bountyId: "4",
+    rangerId: "desertranger",
+    title: "AI Study Buddy",
+    submittedAt: "May 8, 2025",
+    isWinning: true,
+    sheriffStars: 1,
   },
 ];
 

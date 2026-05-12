@@ -70,7 +70,10 @@ export default async function BountyDetail({ params }: { params: Promise<{ id: s
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="text-gold">★</span>
-                  Posted by <strong className="text-cream">{bounty.postedBy.name}</strong>
+                  Posted by{" "}
+                  <Link href={`/u/${bounty.postedBy.id}`} className="font-semibold text-cream hover:text-gold">
+                    {bounty.postedBy.name}
+                  </Link>
                 </span>
               </div>
             </div>
