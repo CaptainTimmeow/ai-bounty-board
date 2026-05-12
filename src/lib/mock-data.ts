@@ -1,4 +1,6 @@
-export type BountyStatus = "open" | "judging" | "completed" | "draft" | "unresolved";
+import type { BountyLifecycleState } from "./bounty-state";
+
+export type BountyStatus = BountyLifecycleState | "completed";
 export type Category = "Productivity" | "Game Dev" | "Education" | "Creative" | "Tools & Utilities" | "Other";
 export type Difficulty = "Easy" | "Medium" | "Hard" | "Expert";
 

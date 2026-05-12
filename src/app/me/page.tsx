@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
@@ -17,7 +18,7 @@ export default async function MePage() {
         <small>User id: {data.user.id}</small>
       </p>
       <p>
-        <a href="/profile">Edit profile (placeholder)</a>
+        <Link href="/profile">Edit profile (placeholder)</Link>
       </p>
       <form action={logout}>
         <button type="submit">Log out</button>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { bounties } from "@/lib/mock-data";
+import { effectiveBountyState } from "@/lib/bounty-state";
 import { StatusBadge } from "@/components/status-badge";
 
 const tabs = ["Overview", "Requirements", "Deliverables", "Judging"];
@@ -20,6 +21,14 @@ const examples = [
 export default async function BountyDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const bounty = bounties.find((b) => b.id === id) ?? bounties[0];
+  const persistedState = bounty.status === "completed" ? "resolved" : bounty.status;
+  const effectiveStatus = effectiveBountyState({ state: persistedState, deadline: bounty.deadline });
+  const timeRemaining =
+    effectiveStatus === "open" ? `${bounty.daysLeft}d 12h 45m 18s` :
+    effectiveStatus === "judging" ? "Judging now" :
+    effectiveStatus === "unresolved" ? "Unresolved" :
+    effectiveStatus === "resolved" ? "Resolved" :
+    effectiveStatus;
 
   const thumbGradients: Record<string, string> = {
     "🌤️": "from-amber-900/60 to-yellow-900/40",
@@ -49,7 +58,7 @@ export default async function BountyDetail({ params }: { params: Promise<{ id: s
             <div>
               <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
                 <h1 className="text-[26px] font-bold text-cream leading-tight">{bounty.title}</h1>
-                <StatusBadge status={bounty.status} />
+                <StatusBadge status={effectiveStatus} />
               </div>
               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border border-gold-muted/40 text-gold-muted">
                 {bounty.category}
@@ -161,7 +170,7 @@ export default async function BountyDetail({ params }: { params: Promise<{ id: s
             <div className="text-center mb-4">
               <div className="text-[11px] text-sand mb-1">Time Remaining</div>
               <div className="text-[24px] font-bold text-gold tracking-tight">
-                {bounty.daysLeft}d 12h 45m 18s
+                {timeRemaining}
               </div>
               <div className="text-[11px] text-dust mt-0.5">Deadline: {bounty.deadline}</div>
             </div>
