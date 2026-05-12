@@ -4,7 +4,7 @@ const navLinks = [
   { href: "/", label: "Browse" },
   { href: "/bounties/new", label: "Post a Bounty" },
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/profile/demo", label: "Profile" },
+  { href: "/u/desertranger", label: "Profile" },
 ];
 
 export function Header() {
