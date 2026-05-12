@@ -1,11 +1,14 @@
 import type { BountyStatus } from "@/lib/mock-data";
 
 const config: Record<BountyStatus, { label: string; bg: string; text: string; dot: string }> = {
+  draft: { label: "Draft", bg: "bg-dust/15", text: "text-dust", dot: "bg-dust" },
+  in_review: { label: "In Review", bg: "bg-info/15", text: "text-info", dot: "bg-info" },
   open: { label: "Open", bg: "bg-success/15", text: "text-success", dot: "bg-success" },
   judging: { label: "Judging", bg: "bg-warning/15", text: "text-warning", dot: "bg-warning" },
+  resolved: { label: "Resolved", bg: "bg-gold/15", text: "text-gold", dot: "bg-gold" },
   completed: { label: "Completed", bg: "bg-gold/15", text: "text-gold", dot: "bg-gold" },
-  draft: { label: "Draft", bg: "bg-dust/15", text: "text-dust", dot: "bg-dust" },
   unresolved: { label: "Unresolved", bg: "bg-danger/15", text: "text-danger", dot: "bg-danger" },
+  hidden: { label: "Hidden", bg: "bg-dust/15", text: "text-dust", dot: "bg-dust" },
 };
 
 const submissionConfig: Record<string, { label: string; bg: string; text: string; dot: string }> = {

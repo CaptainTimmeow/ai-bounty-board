@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Bounty } from "@/lib/mock-data";
+import { effectiveBountyState } from "@/lib/bounty-state";
 import { StatusBadge } from "./status-badge";
 
 const thumbGradients: Record<string, string> = {
@@ -32,6 +33,14 @@ function CategoryTag({ category }: { category: string }) {
 
 export function BountyCard({ bounty }: { bounty: Bounty }) {
   const grad = thumbGradients[bounty.icon] ?? "from-stone-800/60 to-stone-900/40";
+  const persistedState = bounty.status === "completed" ? "resolved" : bounty.status;
+  const effectiveStatus = effectiveBountyState({ state: persistedState, deadline: bounty.deadline });
+  const timeLabel =
+    effectiveStatus === "open" ? `${bounty.daysLeft} days left` :
+    effectiveStatus === "judging" ? "Judging now" :
+    effectiveStatus === "unresolved" ? "Unresolved" :
+    effectiveStatus === "resolved" ? "Resolved" :
+    bounty.status;
 
   return (
     <Link href={`/bounties/${bounty.id}`} className="group block">
@@ -74,7 +83,7 @@ export function BountyCard({ bounty }: { bounty: Bounty }) {
               <svg className="w-3.5 h-3.5 text-dust" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              {bounty.daysLeft} days left
+              {timeLabel}
             </span>
             <span className="flex items-center gap-1">
               <svg className="w-3.5 h-3.5 text-dust" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -83,7 +92,7 @@ export function BountyCard({ bounty }: { bounty: Bounty }) {
               {bounty.rangersCount} Rangers
             </span>
           </div>
-          <StatusBadge status={bounty.status} />
+          <StatusBadge status={effectiveStatus} />
         </div>
       </div>
     </Link>
